@@ -12,3 +12,7 @@
 [submodule "src/lidar_simulator"]
 	path = src/lidar_simulator
 	url = git@github.com:unr-arl/lidar_simulator.git
+[submodule "src/ctrl_planning"]
+	path = src/ctrl_planning
+	url = git@github.com:unr-arl/ctrl_planning.git
+	branch = rl_class
