@@ -9,3 +9,6 @@
 	path = src/rmf
 	url = git@github.com:unr-arl/rmf.git
 	branch = rl_robotics
+[submodule "src/lidar_simulator"]
+	path = src/lidar_simulator
+	url = git@github.com:unr-arl/lidar_simulator.git
