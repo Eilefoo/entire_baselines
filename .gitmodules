@@ -12,3 +12,7 @@
 	path = src/ctrl_planning
 	url = git@github.com:unr-arl/ctrl_planning.git
 	branch = rl_class
+[submodule "rotors_simulator"]
+	path = src/rotors_simulator
+	url = git@github.com:unr-arl/rotors_simulator.git
+	branch = melodic_devel
