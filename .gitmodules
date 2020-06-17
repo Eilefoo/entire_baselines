@@ -1,10 +1,10 @@
 [submodule "rotors_simulator"]
 	path = src/rotors_simulator
-	url = https://github.com/ethz-asl/rotors_simulator.git
+	url = git@github.com:ethz-asl/rotors_simulator.git
 	branch = feature/gazebo9
 [submodule "mav_comm"]
 	path = src/mav_comm
-	url = https://github.com/ethz-asl/mav_comm.git
+	url = git@github.com:ethz-asl/mav_comm.git
 [submodule "src/rmf"]
 	path = src/rmf
 	url = git@github.com:unr-arl/rmf.git
