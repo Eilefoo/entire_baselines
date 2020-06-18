@@ -26,17 +26,6 @@ roslaunch rmf rmf_sim.launch
 
 ## Details
 
-- In rviz, press g to set a 3D goal (or click the icon in the top bar, 3D Goal). Then:
-Left click to set x,y,yaw
-WHILE keep pressing Left click, press the right click for the Height
-
-- Change the desired shapes inside the launch file:
-```
- <param name="waypoint_type" value="straight" />
-
- straight / manual-lonely-waypoint / circle / eight
-```
-
 - By default RMF is equipped with an OS1-64. You can change it to 0S0-128 inside 
 src/rmf_sim/rotors/urdf/delta.xacro (comment/uncomment)\
 Remember to change the static_transform_publisher inside rmf_sim.launch (comment/uncomment)
