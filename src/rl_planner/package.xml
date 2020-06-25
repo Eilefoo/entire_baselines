@@ -51,8 +51,12 @@
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>rospy</build_depend>
   <build_depend>rotors_gazebo</build_depend>
+  <build_depend>std_srvs</build_depend>
+
   <build_export_depend>rospy</build_export_depend>
   <build_export_depend>rotors_gazebo</build_export_depend>
+  <build_export_depend>std_srvs</build_export_depend>
+
   <exec_depend>rospy</exec_depend>
   <exec_depend>rotors_gazebo</exec_depend>
 

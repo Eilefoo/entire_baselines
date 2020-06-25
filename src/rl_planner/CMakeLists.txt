@@ -10,6 +10,7 @@ project(rl_planner)
 find_package(catkin REQUIRED COMPONENTS
   rospy
   rotors_gazebo
+  std_srvs
 )
 
 ## System dependencies are found with CMake's conventions
