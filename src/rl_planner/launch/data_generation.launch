@@ -1,6 +1,6 @@
 <launch>
 
-    <node name="data_generation_node" pkg="rl_planner" type="data_generation.py">
+    <node name="data_generation_node" pkg="rl_planner" type="data_generation.py" output="screen">
     
     </node>
 
