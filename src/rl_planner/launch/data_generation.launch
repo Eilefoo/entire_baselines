@@ -1,7 +1,10 @@
 <launch>
 
-    <node name="data_generation_node" pkg="rl_planner" type="data_generation.py" output="screen">
-    
-    </node>
+    <rosparam command="load" file="$(find rl_planner)/params/data_generation_params.yaml" />
 
+    <node name="data_generation_node" pkg="rl_planner" type="data_generation.py" output="screen">
+        <remap from="contact_topic" to="/delta/delta_contact" />
+        <remap from="goal_topic" to="/delta/goal" />
+        <remap from="odom_topic" to="/delta/ground_truth/odometry" />
+    </node>
 </launch>
