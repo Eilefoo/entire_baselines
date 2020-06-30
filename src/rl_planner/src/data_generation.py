@@ -94,13 +94,13 @@ class DataGenerator:
 
     def get_pose_diff(self, p1, p2):
         # At the moment, only return the translation difference. Maybe we should be sending the yaw error also
-        position_1 = np.array([p1.x, p1.y, p1.z])
-        position_2 = np.array([p2.x, p2.y, p2.z])
+        position_1 = np.array([p1.position.x, p1.position.y, p1.position.z])
+        position_2 = np.array([p2.position.x, p2.position.y, p2.position.z])
         return np.linalg.norm(position_1 - position_2)
 
     def odom_cb(self, msg):
         self.current_pose = msg.pose.pose
-        if self.get_pose_diff(self.current_pose, self.current_goal) < self.waypoint_radius:
+        if self.current_goal is not None and self.get_pose_diff(self.current_pose, self.current_goal) < self.waypoint_radius:
             # If the robot has reached the given goal pose, send the next waypoint and reset the timer
             self.reset_timer()
             self.goal_pub.publish(self.generate_new_goal())
