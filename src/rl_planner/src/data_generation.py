@@ -18,6 +18,7 @@ class DataGenerator:
     def __init__(self):
         rospy.init_node("data_generation_node")
         self.goal_pub = rospy.Publisher('goal_topic', Pose, queue_size=1)
+        self.model_state_pub = rospy.Publisher('/gazebo/set_model_state', ModelState, queue_size=1)
         self.current_pose = None  # In world frame
         # In world frame, used to check if the robot has reached its intended position
         self.current_goal = None
@@ -26,8 +27,6 @@ class DataGenerator:
             '/gazebo/pause_physics', Empty)
         self.unpause_physics_proxy = rospy.ServiceProxy(
             '/gazebo/unpause_physics', Empty)
-        self.place_robot_proxy = rospy.ServiceProxy(
-            '/gazebo/set_model_state', ModelState)
         rospy.Subscriber('contact_topic', ContactsState, self.contact_cb)
         rospy.Subscriber('odom_topic', Odometry, self.odom_cb)
         self.timeout_timer = rospy.Timer(rospy.Duration(
@@ -73,7 +72,7 @@ class DataGenerator:
         new_position.twist.angular.y = 0
         new_position.twist.angular.z = 0
         rospy.loginfo('Placing robot')
-        self.place_robot_proxy(new_position)
+        self.model_state_pub.publish(new_position)
 
         self.reset_timer()
 
