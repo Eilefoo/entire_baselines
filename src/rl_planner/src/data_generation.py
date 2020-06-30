@@ -7,6 +7,7 @@ from gazebo_msgs.msg import ContactsState, ModelState
 from nav_msgs.msg import Odometry
 from geometry_msgs.msg import Pose
 import numpy as np
+import random
 
 
 # start quadrotor
@@ -41,14 +42,34 @@ class DataGenerator:
         self.ground_collision_frame = rospy.get_param(
             'ground_collision_frame', 'ground_plane::link::collision')
 
+    def transform_pose_to_world(self, p):
+        # Convert this goal into the world frame using the current_pose
+        return p
+
     def generate_new_goal(self):
-        # https://stackoverflow.com/questions/5837572/generate-a-random-point-within-a-circle-uniformly/5838055#5838055
-
         # Generate and return a pose in the sphere centered at the robot frame with radius as the goal_generation_radius
-        goal = Pose()
 
+        # https://stackoverflow.com/questions/5837572/generate-a-random-point-within-a-circle-uniformly/5838055#5838055
+        goal = Pose()
+        u = self.goal_generation_radius * random.random()
+        v = self.goal_generation_radius * random.random()
+        theta = u * 2.0 * np.pi
+        phi = np.arccos(2.0 * v - 1.0)
+        while np.isnan(phi):
+            phi = np.arccos(2.0 * v - 1.0)
+        r = np.cbrt(random.random())
+        sinTheta = np.sin(theta)
+        cosTheta = np.cos(theta)
+        sinPhi = np.sin(phi)
+        cosPhi = np.cos(phi)
+        x = r * sinPhi * cosTheta
+        y = r * sinPhi * sinTheta
+        z = r * cosPhi
+        print('x: ', x ,' y: ',y, ' z: ', z)
+        
         # Convert this goal into the world frame and set it as the current goal
-        self.current_goal = goal
+        self.current_goal = self.transform_pose_to_world(goal)
+        return goal
 
     def reset_sim(self):
         rospy.loginfo('Pausing physics')
@@ -100,7 +121,10 @@ class DataGenerator:
 
     def odom_cb(self, msg):
         self.current_pose = msg.pose.pose
-        if self.current_goal is not None and self.get_pose_diff(self.current_pose, self.current_goal) < self.waypoint_radius:
+        if self.current_goal is None:
+            self.goal_pub.publish(self.generate_new_goal())
+            return
+        if self.get_pose_diff(self.current_pose, self.current_goal) < self.waypoint_radius:
             # If the robot has reached the given goal pose, send the next waypoint and reset the timer
             self.reset_timer()
             self.goal_pub.publish(self.generate_new_goal())
@@ -109,15 +133,15 @@ class DataGenerator:
         # Check inside the models states for robot's contact state
         for i in range(len(msg.states)):
             if(msg.states[i].collision1_name == self.robot_collision_frame):
-                rospy.loginfo('Contact found!')
+                rospy.logdebug('Contact found!')
                 if(msg.states[i].collision2_name == self.ground_collision_frame):
-                    rospy.loginfo('Robot colliding with the ground')
+                    rospy.logdebug('Robot colliding with the ground')
                 else:
-                    rospy.loginfo(
+                    rospy.logdebug(
                         'Robot colliding with something else (not ground)')
                     self.reset_sim()
             else:
-                rospy.loginfo('Contact not found yet ...')
+                rospy.logdebug('Contact not found yet ...')
 
 
 if __name__ == '__main__':
