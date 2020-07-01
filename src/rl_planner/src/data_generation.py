@@ -7,7 +7,7 @@ import random
 from gazebo_msgs.msg import ContactsState, ModelState
 from nav_msgs.msg import Odometry
 from geometry_msgs.msg import Pose
-from std_srvs.srv import Empty
+from std_srvs.srv import Empty, EmptyRequest
 from visualization_msgs.msg import Marker
 from visualization_msgs.msg import MarkerArray
 
@@ -126,7 +126,7 @@ class DataGenerator:
 
     def reset_sim(self):
         rospy.loginfo('Pausing physics')
-        self.pause_physics_proxy(Empty())
+        self.pause_physics_proxy(EmptyRequest())
 
         # Fill in the new position of the robot
         new_position = ModelState()
@@ -151,7 +151,7 @@ class DataGenerator:
         self.reset_timer()
 
         rospy.loginfo('Unpausing physics')
-        self.unpause_physics_proxy(Empty())
+        self.unpause_physics_proxy(EmptyRequest())
 
     def reset_timer(self):
         rospy.loginfo('Resetting the timeout timer')
@@ -166,6 +166,7 @@ class DataGenerator:
     def timer_cb(self, event):
         self.goal_pub.publish(self.generate_new_goal())
 
+
     def get_pose_diff(self, p1, p2):
         # At the moment, only return the translation difference. Maybe we should be sending the yaw error also
         position_1 = np.array([p1.position.x, p1.position.y, p1.position.z])
@@ -176,12 +177,14 @@ class DataGenerator:
         self.current_pose = msg.pose.pose
         if self.current_goal is None:
             self.goal_pub.publish(self.generate_new_goal())
+            rospy.sleep(10.0)
             return
         if self.get_pose_diff(self.current_pose,
                               self.current_goal) < self.waypoint_radius:
             # If the robot has reached the given goal pose, send the next waypoint and reset the timer
             self.reset_timer()
             self.goal_pub.publish(self.generate_new_goal())
+            rospy.sleep(10.0)
 
     def contact_cb(self, msg):
         # Check inside the models states for robot's contact state
