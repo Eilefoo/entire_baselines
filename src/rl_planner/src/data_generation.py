@@ -42,22 +42,23 @@ class DataGenerator:
         self.ground_collision_frame = rospy.get_param(
             'ground_collision_frame', 'ground_plane::link::collision')
 
-    def transform_pose_to_world(self, p):
-        # Convert this goal into the world frame using the current_pose
-        return p
+    # def transform_pose_to_world(self, p):
+    #     # Convert this goal into the world frame using the current_pose
+        
+    #     return p
 
     def generate_new_goal(self):
         # Generate and return a pose in the sphere centered at the robot frame with radius as the goal_generation_radius
 
         # https://stackoverflow.com/questions/5837572/generate-a-random-point-within-a-circle-uniformly/5838055#5838055
         goal = Pose()
-        u = self.goal_generation_radius * random.random()
-        v = self.goal_generation_radius * random.random()
+        u = random.random()
+        v = random.random()
         theta = u * 2.0 * np.pi
         phi = np.arccos(2.0 * v - 1.0)
         while np.isnan(phi):
             phi = np.arccos(2.0 * v - 1.0)
-        r = np.cbrt(random.random())
+        r = self.goal_generation_radius * np.cbrt(random.random())
         sinTheta = np.sin(theta)
         cosTheta = np.cos(theta)
         sinPhi = np.sin(phi)
@@ -65,10 +66,17 @@ class DataGenerator:
         x = r * sinPhi * cosTheta
         y = r * sinPhi * sinTheta
         z = r * cosPhi
-        print('x: ', x ,' y: ',y, ' z: ', z)
-        
+        rospy.loginfo_throttle(2,'New Goal: (%.3f , %.3f , %.3f)', x, y, z)
+        goal.position.x = x
+        goal.position.y = y
+        goal.position.z = z
+        goal.orientation.x = 0
+        goal.orientation.y = 0
+        goal.orientation.z = 0
+        goal.orientation.w = 1
         # Convert this goal into the world frame and set it as the current goal
-        self.current_goal = self.transform_pose_to_world(goal)
+        # self.current_goal = self.transform_pose_to_world(goal)
+
         return goal
 
     def reset_sim(self):
