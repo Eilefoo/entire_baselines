@@ -4,8 +4,13 @@ Super-repository for reinforcement learning
 
 ## Usage
 
-### Setup
+### Setup ROS environment and relevant packages:
 
+```bash
+sudo apt-get install ros-melodic-desktop-full ros-melodic-joy ros-melodic-octomap-ros ros-melodic-mavlink python-wstool python-catkin-tools protobuf-compiler libgoogle-glog-dev ros-melodic-control-toolbox
+```
+
+### Setup the workspace:
 ```bash
 sudo apt-get install ros-melodic-desktop-full ros-melodic-joy ros-melodic-octomap-ros ros-melodic-mavlink python-wstool python-catkin-tools protobuf-compiler libgoogle-glog-dev ros-melodic-control-toolbox
 git clone git@github.com:unr-arl/reinforcement_learning_ws.git
@@ -32,3 +37,10 @@ Remember to change the static_transform_publisher inside rmf_sim.launch (comment
 
 - All the models/worlds can be found here https://github.com/unr-arl/gazebo_resources.git
 
+
+## Useful commands
+- Add a new submodule:
+```
+cd src
+git submodule add -b master git@github.com:unr-arl/ros_data_utils.git
+```

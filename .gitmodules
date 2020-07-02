@@ -16,3 +16,11 @@
 	path = src/rotors_simulator
 	url = git@github.com:unr-arl/rotors_simulator.git
 	branch = melodic_devel
+[submodule "src/ros_data_utils"]
+	path = src/ros_data_utils
+	url = git@github.com:unr-arl/ros_data_utils.git
+	branch = master
+[submodule "src/catkin_simple"]
+	path = src/catkin_simple
+	url = git@github.com:catkin/catkin_simple.git
+	branch = master
