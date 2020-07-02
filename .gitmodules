@@ -24,3 +24,7 @@
 	path = src/catkin_simple
 	url = git@github.com:catkin/catkin_simple.git
 	branch = master
+[submodule "src/rl_planners"]
+	path = src/rl_planners
+	url = git@github.com:unr-arl/rl_planners.git
+	branch = master
