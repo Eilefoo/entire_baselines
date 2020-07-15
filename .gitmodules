@@ -28,3 +28,7 @@
 	path = src/rl_planners
 	url = git@github.com:unr-arl/rl_planners.git
 	branch = master
+[submodule "src/baselines_ros"]
+	path = src/baselines_ros
+	url = git@github.com:unr-arl/baselines_ros.git
+	branch = master
