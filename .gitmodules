@@ -32,3 +32,6 @@
 	path = src/baselines_ros
 	url = git@github.com:unr-arl/baselines_ros.git
 	branch = master
+[submodule "src/forest_gen"]
+	path = src/forest_gen
+	url = git@github.com:tungdanganh/forest_gen.git
