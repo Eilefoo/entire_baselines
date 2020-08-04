@@ -35,3 +35,6 @@
 [submodule "src/forest_gen"]
 	path = src/forest_gen
 	url = git@github.com:tungdanganh/forest_gen.git
+[submodule "src/ign_gazebo_resources"]
+	path = src/ign_gazebo_resources
+	url = git@github.com:unr-arl/ign_gazebo_resources.git
