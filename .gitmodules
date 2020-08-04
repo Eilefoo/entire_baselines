@@ -34,3 +34,7 @@
 [submodule "src/ign_gazebo_resources"]
 	path = src/ign_gazebo_resources
 	url = git@github.com:unr-arl/ign_gazebo_resources.git
+[submodule "src/random_world_generator"]
+	path = src/random_world_generator
+	url = git@github.com:unr-arl/random_world_generator.git
+	branch = master
