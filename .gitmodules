@@ -8,10 +8,6 @@
 [submodule "src/lidar_simulator"]
 	path = src/lidar_simulator
 	url = git@github.com:unr-arl/lidar_simulator.git
-[submodule "src/ctrl_planning"]
-	path = src/ctrl_planning
-	url = git@github.com:unr-arl/ctrl_planning.git
-	branch = rl_class
 [submodule "rotors_simulator"]
 	path = src/rotors_simulator
 	url = git@github.com:unr-arl/rotors_simulator.git
@@ -35,3 +31,6 @@
 [submodule "src/forest_gen"]
 	path = src/forest_gen
 	url = git@github.com:tungdanganh/forest_gen.git
+[submodule "src/ign_gazebo_resources"]
+	path = src/ign_gazebo_resources
+	url = git@github.com:unr-arl/ign_gazebo_resources.git
