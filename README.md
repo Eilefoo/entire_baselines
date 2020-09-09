@@ -27,8 +27,6 @@ catkin build
 source devel/setup.bash
 ```
 
-As we haven't started working with the ctrl_planning yet, its best to blacklist it as well as it has several dependancies that we shall not be using.
-
 ### Run
 
 ```bash
