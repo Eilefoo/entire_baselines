@@ -1,10 +1,6 @@
 [submodule "mav_comm"]
 	path = src/mav_comm
 	url = git@github.com:ethz-asl/mav_comm.git
-[submodule "src/rmf"]
-	path = src/rmf
-	url = git@github.com:unr-arl/rmf.git
-	branch = rl_robotics
 [submodule "src/lidar_simulator"]
 	path = src/lidar_simulator
 	url = git@github.com:unr-arl/lidar_simulator.git
@@ -28,12 +24,6 @@
 	path = src/baselines_ros
 	url = git@github.com:unr-arl/baselines_ros.git
 	branch = master
-[submodule "src/forest_gen"]
-	path = src/forest_gen
-	url = git@github.com:tungdanganh/forest_gen.git
-[submodule "src/ign_gazebo_resources"]
-	path = src/ign_gazebo_resources
-	url = git@github.com:unr-arl/ign_gazebo_resources.git
 [submodule "src/random_world_generator"]
 	path = src/random_world_generator
 	url = git@github.com:unr-arl/random_world_generator.git
