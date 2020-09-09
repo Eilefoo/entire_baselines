@@ -28,3 +28,7 @@
 	path = src/random_world_generator
 	url = git@github.com:unr-arl/random_world_generator.git
 	branch = master
+[submodule "src/rmf_sim"]
+	path = src/rmf_sim
+	url = git@github.com:unr-arl/rmf_sim.git
+	branch = master
