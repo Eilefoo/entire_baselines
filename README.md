@@ -24,7 +24,7 @@ wstool init . gbplanner_packages.rosinstall # expert planner
 
 wstool update
 
-catkin config -DCMAKE_BUILD_TYPE=Release --blacklist rotors_hil_interface
+catkin config -DCMAKE_BUILD_TYPE=Release -DUSE_OCTOMAP=0 --blacklist rotors_hil_interface
 
 catkin build
 
