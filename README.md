@@ -20,14 +20,16 @@ cd reinforcement_learning_ws
 
 git submodule update --init --recursive
 
-catkin config -DCMAKE_BUILD_TYPE=Release --blacklist rotors_hil_interface
+wstool init . gbplanner_packages.rosinstall # expert planner
+
+wstool update
+
+catkin config -DCMAKE_BUILD_TYPE=Release -DUSE_OCTOMAP=0 --blacklist rotors_hil_interface
 
 catkin build
 
 source devel/setup.bash
 ```
-
-As we haven't started working with the ctrl_planning yet, its best to blacklist it as well as it has several dependancies that we shall not be using.
 
 ### Run
 
