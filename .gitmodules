@@ -7,7 +7,7 @@
 [submodule "rotors_simulator"]
 	path = src/rotors_simulator
 	url = git@github.com:unr-arl/rotors_simulator.git
-	branch = melodic_devel
+	branch = dev/acc_command
 [submodule "src/ros_data_utils"]
 	path = src/ros_data_utils
 	url = git@github.com:unr-arl/ros_data_utils.git
